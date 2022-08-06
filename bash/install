@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# bashrc modification
+FILE=/etc/bash.bashrc
+backup=$PWD/bash.bashrc
+danger=$PWD/bash.bashrc_original
+source=$PWD/bash_add
+
+#----------------Modifying Bashrc file---------------------
+mod(){
+tput clear
+sleep 1
+echo "Modifying bash.bashrc"
+tput cup 0 0
+echo "Cheking for Bashrc File"
+tput cup 0 24
+echo "."
+sleep 1
+tput cup 0 25
+echo "."
+sleep 1
+tput cup 0 26
+echo "."
+sleep 1
+tput sgr0
+sleep 2
+
+if [ -f $FILE ]; then
+   echo "Bashrc file is found"
+   sleep 1
+   echo "Creating backup file"
+   sleep 1
+   cp $FILE $backup
+   cp $FILE $danger
+   sleep 1
+   echo "Modify Bashrc File"
+   cat "$source" >> "$FILE"
+   echo "Modification Success"
+   sleep 1
+else
+   echo "Bashrc file is notfound"
+fi
+}
+mod
